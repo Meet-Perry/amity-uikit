@@ -44,9 +44,9 @@ const PostEditor = ({ postId, onSave, className, placeholder }) => {
       mentionees[0].type = 'user';
       mentionees[0].userIds = mentions.map(({ id }) => id);
 
-      postMetadata.mentioned = mentions.map(({ plainTextIndex, id }) => ({
+      postMetadata.mentioned = mentions.map(({ plainTextIndex, display, id }) => ({
         index: plainTextIndex,
-        length: id.length,
+        length: display.length,
         type: 'user',
         userId: id,
       }));
