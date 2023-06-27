@@ -13,7 +13,8 @@ export const PostInfo = styled.div`
 export const Name = styled.div`
   ${({ theme }) => theme.typography.title}
 
-  word-break: break-all;
+  word-break: normal;
+  flex-shrink: 0;
 
   &.clickable {
     &:hover {
@@ -26,6 +27,7 @@ export const ArrowSeparator = styled(ArrowRight).attrs({
   height: '8px',
   width: '8px',
 })`
+  flex-shrink: 0;
   color: ${({ theme }) => theme.palette.base.shade1};
 `;
 
@@ -70,8 +72,6 @@ export const AdditionalInfo = styled.div`
 export const PostNamesContainer = styled.div`
   display: flex;
   align-items: center;
-
-  > :not(:first-child) {
-    margin-left: 0.25rem;
-  }
+  flex-wrap: wrap;
+  column-gap: 0.25rem;
 `;
