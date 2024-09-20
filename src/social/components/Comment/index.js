@@ -14,6 +14,7 @@ import { isModerator } from '~/helpers/permissions';
 import StyledComment from './Comment.styles';
 import useSocialMention from '~/social/hooks/useSocialMention';
 import usePost from '~/social/hooks/usePost';
+import { useNavigation } from '~/social/providers/NavigationProvider';
 
 import {
   CommentBlock,
@@ -79,6 +80,9 @@ const Comment = ({ readonly = false, commentId, currentUserId, userRoles }) => {
     handleDeleteComment,
     isFlaggedByMe,
   } = useComment({ commentId });
+
+  const { onClickUser } = useNavigation();
+  const handleClickUser = () => onClickUser(commentAuthor.userId);
 
   const { post } = usePost(comment?.referenceId);
 
@@ -209,6 +213,7 @@ const Comment = ({ readonly = false, commentId, currentUserId, userRoles }) => {
       isReported={isFlaggedByMe}
       isReplyComment={isReplyComment}
       onClickReply={onClickReply}
+      onClickUser={handleClickUser}
       onChange={onChange}
     />
   );

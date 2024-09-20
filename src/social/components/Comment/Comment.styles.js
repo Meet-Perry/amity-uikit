@@ -3,6 +3,7 @@ import React from 'react';
 import Truncate from 'react-truncate-markup';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import cx from 'classnames';
 
 import { POSITION_LEFT } from '~/helpers/getCssPosition';
 import Button, { PrimaryButton } from '~/core/components/Button';
@@ -43,6 +44,7 @@ const StyledComment = ({
   text,
   markup,
   onClickReply,
+  onClickUser,
   handleReportComment,
   handleEdit,
   startEditing,
@@ -85,7 +87,9 @@ const StyledComment = ({
           lines={2}
         >
           <CommentHeader>
-            <AuthorName>{authorName}</AuthorName>
+            <AuthorName className={cx({ clickable: !!onClickUser })} onClick={onClickUser}>
+              {authorName}
+            </AuthorName>
             <Truncate.Atom>
               {isBanned && <BanIcon css="margin-left: 0.265rem; margin-top: 1px;" />}
               <CommentDate date={createdAt} />
@@ -163,6 +167,7 @@ StyledComment.propTypes = {
   isReplyComment: PropTypes.bool,
   isBanned: PropTypes.bool,
   onClickReply: PropTypes.func,
+  onClickUser: PropTypes.func,
   onChange: PropTypes.func.isRequired,
 };
 
